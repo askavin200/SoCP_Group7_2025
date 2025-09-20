@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE Xdmf SYSTEM "Xdmf.dtd" []>
+<Xdmf Version="3.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Domain>
+    <Grid Name="mesh" GridType="Uniform">
+      <Topology TopologyType="Triangle" NumberOfElements="1663" NodesPerElement="3">
+        <DataItem Dimensions="1663 3" NumberType="Int" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Mesh/mesh/topology</DataItem>
+      </Topology>
+      <Geometry GeometryType="XY">
+        <DataItem Dimensions="940 2" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Mesh/mesh/geometry</DataItem>
+      </Geometry>
+    </Grid>
+    <Grid Name="displacement" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="displacement" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20000000000000001" />
+        <Attribute Name="displacement" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="940 3" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/displacement/0_20000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="displacement" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.40000000000000002" />
+        <Attribute Name="displacement" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="940 3" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/displacement/0_40000000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="displacement" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60000000000000009" />
+        <Attribute Name="displacement" AttributeType="Vector" Center="Node">
+          <DataItem Dimensions="940 3" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/displacement/0_60000000000000009</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+    <Grid Name="temperature" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="temperature" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20000000000000001" />
+        <Attribute Name="temperature" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="940 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/temperature/0_20000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="temperature" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.40000000000000002" />
+        <Attribute Name="temperature" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="940 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/temperature/0_40000000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="temperature" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60000000000000009" />
+        <Attribute Name="temperature" AttributeType="Scalar" Center="Node">
+          <DataItem Dimensions="940 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/temperature/0_60000000000000009</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+    <Grid Name="vMises_stress" GridType="Collection" CollectionType="Temporal">
+      <Grid Name="vMises_stress" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.20000000000000001" />
+        <Attribute Name="vMises_stress" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="1663 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/vMises_stress/0_20000000000000001</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="vMises_stress" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.40000000000000002" />
+        <Attribute Name="vMises_stress" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="1663 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/vMises_stress/0_40000000000000002</DataItem>
+        </Attribute>
+      </Grid>
+      <Grid Name="vMises_stress" GridType="Uniform">
+        <xi:include xpointer="xpointer(/Xdmf/Domain/Grid[@GridType='Uniform'][1]/*[self::Topology or self::Geometry])" />
+        <Time Value="0.60000000000000009" />
+        <Attribute Name="vMises_stress" AttributeType="Scalar" Center="Cell">
+          <DataItem Dimensions="1663 1" Format="HDF">Export-brake-disc-nl-thermal-load.h5:/Function/vMises_stress/0_60000000000000009</DataItem>
+        </Attribute>
+      </Grid>
+    </Grid>
+  </Domain>
+</Xdmf>

@@ -1,0 +1,27 @@
+FROM dolfinx/dolfinx:v0.6.0-r1-arm64
+
+# verbose build output
+ARG BUILDKIT_PROGRESS=tty
+
+# ignore the 'running as root' warning
+ENV PIP_ROOT_USER_ACTION=ignore
+RUN pip install pandas jupyter rich black ruff ipython ipywidgets ipympl
+
+RUN apt update && apt install -y freeglut3-dev mesa-utils libgl1-mesa-glx xvfb
+
+# Install VTK by building it manually from source (VTK is not available as a wheel for ARM64,
+# thus it has to be built with a ARM64 compiler)
+RUN mkdir -p /opt/vtk/{build,src} 
+RUN git clone --progress https://gitlab.kitware.com/vtk/vtk.git /opt/vtk/src
+
+# Configure and build
+WORKDIR /opt/vtk/build
+RUN cmake ../src -DVTK_WRAP_PYTHON=ON -DVTK_GROUP_ENABLE_Web:STRING=WANT -GNinja && ninja -j 6
+
+# make vtk site-packages visible to python
+RUN echo 'export PYTHONPATH="/opt/vtk/build/lib/python3.10/site-packages:$PYTHONPATH"' >> ~/.bashrc
+
+RUN pip install "scooby>=0.5.1" "appdirs>=1.4.4" "pooch>=1.7.0" "trame>=2.4.0" "typing-extensions>=4.4" "imageio>=2.28.0" "meshio>=4.0.3,<5.0" && pip install --no-deps pyvista
+
+CMD [ "/usr/bin/bash" ]
+
