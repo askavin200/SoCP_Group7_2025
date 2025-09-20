@@ -59,7 +59,7 @@ def solve_system(
     # initialize Paraview Export
     if i is not None:
         outfile = XDMFFile(MPI.COMM_WORLD, f"Results/Cantilever/Nonlinear/Order 2/CantileverBeam_Linear_{i}.xdmf", "w")
-    else:
+    elif load_case is not None:
         outfile = XDMFFile(MPI.COMM_WORLD, f"Results/Brake_Disc/Nonlinear/Export-brake-disc-nl-{load_case}-load.xdmf", "w")
     outfile.write_mesh(kernel_data.msh)
 
@@ -98,6 +98,12 @@ def solve_system(
             # update solution
             kernel_data.U.x.array[:] += delta_u[:]
             
+            # Console print for max disp magnitude and temp
+            dofs = kernel_data.U.x.array[:].reshape(-1,3) # Dofs vector
+            disp_mag = np.linalg.norm(dofs[:, :2], axis=1) # Displacement magnitude vector
+            print("Max disp_mag: ",np.max(disp_mag[disp_mag<19]))
+            print("Max temp: ",np.max(dofs))
+
             # check convergence
             if residual < 1e-6:
                 break

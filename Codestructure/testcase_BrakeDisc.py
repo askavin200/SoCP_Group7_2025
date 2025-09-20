@@ -107,7 +107,7 @@ mesh, cell_markers, facet_function, x, ds, dvol = generate_brakedisc(MESH_SIZE)
 """Definition of function space and FE-function"""
 # --- Paramners ---
 elmt_order = 1
-solver = "Linear" # "Linear" "Nonlinear"
+solver = "Nonlinear" # "Linear" "Nonlinear"
 load_case = "Thermomechanical" # "Mechanical" "Thermal" 
 
 # Define finite element
