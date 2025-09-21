@@ -224,6 +224,6 @@ kernel_data.set_heatsource(r)
 
 # Solve system
 if solver == "Nonlinear":
-    solve_system_nonlin(kernel_data, 0.2, 50, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, load_case)
+    solve_system_nonlin(kernel_data, 0.2, 50, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, load_case=load_case)
 elif solver == "Linear":
-    solve_system_lin(kernel_data, 0.2, 50, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, load_case)
+    solve_system_lin(kernel_data, 0.2, 50, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, load_case=load_case)

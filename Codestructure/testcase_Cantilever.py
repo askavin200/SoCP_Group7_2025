@@ -126,9 +126,9 @@ for i in range(11):
 
     # Solve system
     if solver == "Nonlinear":
-        deflection, cum_iter = solve_system_nonlin(kernel_data, 1, 5, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, i)
+        deflection, cum_iter = solve_system_nonlin(kernel_data, 1, 5, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, i=i)
     elif solver == "Linear":
-        deflection, cum_iter = solve_system_lin(kernel_data, 1, 5, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, i)
+        deflection, cum_iter = solve_system_lin(kernel_data, 1, 5, matvec, theta_0, bc_esnt_dofs, bc_esnt_values, neumann_bc, i=i)
     max_def_hist.append(deflection)
     cum_iter_hist.append(cum_iter)
     
